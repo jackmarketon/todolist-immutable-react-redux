@@ -1,0 +1,33 @@
+{
+  "presets": [
+    "env",
+    "react",
+    "airbnb"
+  ],
+  "plugins": [
+    "react-hot-loader/babel",
+    [
+      "module-resolver",
+      {
+        "root":  [
+          "./"
+        ],
+        "alias": {
+          "actions":    "./app/actions",
+          "components": "./app/components",
+          "config":     "./app/config",
+          "middleware": "./app/middleware",
+          "reducers":   "./app/reducers",
+          "selectors":  "./app/selectors",
+        }
+      }
+    ]
+  ],
+  "env":     {
+    "test": {
+      "plugins": [
+        "transform-es2015-modules-commonjs"
+      ]
+    }
+  }
+}
