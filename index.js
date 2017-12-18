@@ -6,6 +6,6 @@ var path = require('path');
 app
   .use('/static', express.static('static'))
   .get('/', function (request, response) {
-    response.sendFile(path.resolve(__dirname, './static/index.html'));
+    response.sendFile(path.resolve(__dirname, '../static/index.html'));
   })
   .listen(port);
