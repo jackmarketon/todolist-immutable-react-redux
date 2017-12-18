@@ -54,7 +54,7 @@ module.exports = {
   devtool: 'source-map',
   entry,
   output: {
-    path: path.join(__dirname, `../static/${pkg.version}`),
+    path: path.join(__dirname, `./static`),
     publicPath: '/static',
     filename: '[name].bundle.js',
   },
