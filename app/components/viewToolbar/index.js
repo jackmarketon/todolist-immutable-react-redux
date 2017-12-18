@@ -5,6 +5,7 @@ import { changeView } from 'actions';
 import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton';
 import viewTypes from 'config/viewTypes';
+import { viewSelector } from 'selectors/dataSelectors';
 
 const ViewToolbar = ({ view, changeView: change }) => (
   <Toolbar>
@@ -27,7 +28,7 @@ ViewToolbar.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  view: state.get('data').get('view'),
+  view: viewSelector(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

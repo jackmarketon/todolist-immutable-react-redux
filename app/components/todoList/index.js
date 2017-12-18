@@ -6,9 +6,9 @@ import Checkbox from 'material-ui/svg-icons/toggle/check-box';
 import CheckBoxOutline from
   'material-ui/svg-icons/toggle/check-box-outline-blank';
 import Mood from 'material-ui/svg-icons/social/mood';
-import viewTypes from 'config/viewTypes';
 import TodoListModel from 'models/todoList';
 import { toggleComplete } from 'actions';
+import { viewFilteredTodoListSelector } from 'selectors/todoListSelectors';
 
 const TodoList = ({ items, toggle }) => (
   <List
@@ -30,7 +30,8 @@ const TodoList = ({ items, toggle }) => (
         key={item.getId()}
         primaryText={item.getText()}
         leftIcon={item.isCompleted() ? <Checkbox /> : <CheckBoxOutline />}
-        style={item.isCompleted() ? { textDecoration: 'line-through' } : {}}
+        style={item.isCompleted() ?
+          { textDecoration: 'line-through' } : {}}
         onClick={() => toggle(item.getId())}
       />
     ))}
@@ -40,14 +41,10 @@ const TodoList = ({ items, toggle }) => (
 TodoList.propTypes = {
   toggle: PropTypes.func.isRequired,
   items: PropTypes.instanceOf(TodoListModel).isRequired,
-  // Prop is used in mapStateToProps
-  // view: PropTypes.string.isRequired, // eslint-disable-line react/no-unused-prop-types
 };
 
 const mapStateToProps = (state) => ({
-  items: state.get('todos')
-    .filter(viewTypes.find(({ id }) =>
-      id === state.getIn(['data', 'view'])).filter),
+  items: viewFilteredTodoListSelector(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
