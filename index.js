@@ -5,6 +5,6 @@ var app = express();
 app
   .use('/static', express.static('/static'))
   .get('/', function (request, response) {
-    response.sendFile('/static/index.html');
+    response.sendFile('./static/index.html');
   })
   .listen(port);
