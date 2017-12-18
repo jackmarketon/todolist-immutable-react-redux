@@ -15,7 +15,7 @@ const TodoList = ({ items, toggle }) => (
   >
     {0 === items.length && (
       <ListItem
-        primaryText="No ToDos"
+        primaryText="No Todos"
         leftIcon={<Mood />}
         disabled
         style={{

@@ -12,7 +12,7 @@ import { clearTodos } from 'actions';
 const App = ({ clear }) => (
   <Fragment>
     <AppBar
-      title="ToDo List"
+      title="Todo List"
       showMenuIconButton={false}
       iconElementRight={<FlatButton label="Clear" onClick={() => clear()} />}
     />

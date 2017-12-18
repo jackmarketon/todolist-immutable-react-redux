@@ -69,7 +69,7 @@ class Form extends Component {
         >
           <ToolbarGroup>
             <TextField
-              hintText="Enter New ToDo"
+              hintText="Enter New Todo"
               errorText={shouldMarkError('text') &&
                 'Error please enter text'}
               onChange={this.handleChange}
