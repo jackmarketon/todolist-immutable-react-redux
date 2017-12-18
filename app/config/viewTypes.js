@@ -6,10 +6,10 @@ export default [
   }, {
     id: 'completed',
     label: 'Completed',
-    filter: ({ isCompleted }) => isCompleted,
+    filter: (item) => item.get('isCompleted'),
   }, {
     id: 'notCompleted',
     label: 'Not Completed',
-    filter: ({ isCompleted }) => !isCompleted,
+    filter: (item) => !item.get('isCompleted'),
   },
 ];

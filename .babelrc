@@ -19,6 +19,7 @@
           "middleware": "./app/middleware",
           "reducers":   "./app/reducers",
           "selectors":  "./app/selectors",
+          "models":     "./app/models"
         }
       }
     ]

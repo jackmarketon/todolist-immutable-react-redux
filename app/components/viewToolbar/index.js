@@ -27,7 +27,7 @@ ViewToolbar.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  view: state.data.view,
+  view: state.get('data').get('view'),
 });
 
 const mapDispatchToProps = (dispatch) => ({
