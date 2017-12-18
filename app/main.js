@@ -10,6 +10,8 @@ import reducers from 'reducers';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import defaultState from 'config/defaultState';
 import App from 'components/app';
+import Todo from 'models/todo';
+import TodoList from 'models/todoList';
 import {
   browserSupportsAllFeatures,
   // loadScript,
@@ -21,9 +23,27 @@ if (browserSupportsAllFeatures()) {
   // loadScript('//.herokuapp.com/static/polyfills.bundle.js', main);
 }
 
+function reviver(key, value) {
+  if ('todos' === key) {
+    return new TodoList(value).map((item) => new Todo(item));
+  }
+  return Immutable.Iterable.isIndexed(value) ?
+    value.toList() :
+    value.toMap();
+}
+
 function main() {
   // Create a history (using browser history)
-  const initialState = Immutable.fromJS(defaultState);
+  let initialState = false;
+  if (localStorage) {
+    const stateInStorage = localStorage.getItem('todos');
+    if (stateInStorage) {
+      initialState = Immutable.fromJS(stateInStorage, reviver);
+    }
+  }
+  if (!initialState) {
+    initialState = Immutable.fromJS(defaultState, reviver);
+  }
 
   const store = createStore(
     reducers,
