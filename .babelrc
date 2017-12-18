@@ -13,6 +13,7 @@
           "./"
         ],
         "alias": {
+          "actors":     "./app/actors",
           "actions":    "./app/actions",
           "components": "./app/components",
           "config":     "./app/config",

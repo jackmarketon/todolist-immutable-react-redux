@@ -10,6 +10,7 @@ import reducers from 'reducers';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import defaultState from 'config/defaultState';
 import App from 'components/app';
+import localStorageSave from 'actors/localStorageSave';
 import Todo from 'models/todo';
 import TodoList from 'models/todoList';
 import {
@@ -38,7 +39,7 @@ function main() {
   if (localStorage) {
     const stateInStorage = localStorage.getItem('todos');
     if (stateInStorage) {
-      initialState = Immutable.fromJS(stateInStorage, reviver);
+      initialState = Immutable.fromJS(JSON.parse(stateInStorage), reviver);
     }
   }
   if (!initialState) {
@@ -52,6 +53,17 @@ function main() {
       serialize: { immutable: Immutable },
     })()
   );
+
+  const actors = [localStorageSave];
+  let acting = false;
+  store.subscribe(() => {
+    // Ensure that action dispatached by actors do not result in a new run
+    if (!acting) {
+      acting = true;
+      actors.forEach((actor) => actor(store.getState()));
+      acting = false;
+    }
+  });
 
   const styles = {
     margin: '0 auto',
