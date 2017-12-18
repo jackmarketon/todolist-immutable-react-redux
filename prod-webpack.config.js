@@ -13,8 +13,8 @@ const entry = {
     'react-dom',
     'react-redux',
     'redux',
-    'redux-thunk',
     'reselect',
+    'immutable',
   ],
   polyfills: [
     path.resolve(__dirname, './app/polyfills.js'),
